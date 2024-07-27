@@ -3,26 +3,24 @@ using ChainOfResponsibility.Models;
 
 namespace ChainOfResponsibility.ChainofResponsibilityPattern
 {
-    public class Treasurer : Employee
+    public class ManagerAssistant : Employee
     {
         private readonly Context _context;
 
-        public Treasurer(Context context)
+        public ManagerAssistant(Context context)
         {
             _context = context;
         }
 
         public override void ProcessRequest(CustomerViewModel customerViewModel)
         {
-            
-            if (customerViewModel.Amount <= 80000)
+            if (customerViewModel.Amount <= 150000)
             {
-
                 CustomerProcess customerProcess = new CustomerProcess();
                 customerProcess.Name = customerViewModel.Name;
                 customerProcess.Amount = customerViewModel.Amount;
-                customerProcess.EmployeeName = "Batuhan YALIN";
-                customerProcess.Description = "Talep edilen tutar veznedar tarafından ödendi.";
+                customerProcess.EmployeeName = "Celal ŞENGÖR";
+                customerProcess.Description = "Talep edilen tutar şube müdür yardımcısı tarafından ödendi.";
                 _context.CustomerProcesses.Add(customerProcess);
                 _context.SaveChanges();
             }
@@ -31,8 +29,8 @@ namespace ChainOfResponsibility.ChainofResponsibilityPattern
                 CustomerProcess customerProcess = new CustomerProcess();
                 customerProcess.Name = customerViewModel.Name;
                 customerProcess.Amount = customerViewModel.Amount;
-                customerProcess.EmployeeName = "Batuhan YALIN";
-                customerProcess.Description = "Talep edilen tutar veznedar tarafından ödenemedi, işlem şube müdürü yardımcısına aktarıldı.";
+                customerProcess.EmployeeName = "Celal ŞENGÖR";
+                customerProcess.Description = "Talep edilen tutar şube müdür yardımcısı tarafından ödenemedi, işlem şube müdürüne aktarıldı.";
                 _context.CustomerProcesses.Add(customerProcess);
                 _context.SaveChanges();
                 NextApprover.ProcessRequest(customerViewModel);

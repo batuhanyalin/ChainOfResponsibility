@@ -1,8 +1,10 @@
+using ChainOfResponsibility.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<Context>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
